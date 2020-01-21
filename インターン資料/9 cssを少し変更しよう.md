@@ -119,12 +119,6 @@
             this.submitPushed = true;
             this.pushNextChoiceLog(startChatBot);
           },
-          pushLogs: function(speaker, text, choiceList) {
-             this.logs.push({ speaker, text, choiceList });
-            Vue.nextTick(() => {
-              this.$refs.scrollp.scrollTop = this.$refs.scrollp.scrollHeight;
-            });
-          },
           submitChoice: function(choice, index) {
             var choiceText = choice.text;
             this.pushLogs("You", choiceText, []);
@@ -160,6 +154,12 @@
               text: t,
               isPushed: false
             };
+          },
+          pushLogs: function(speaker, text, choiceList) {
+             this.logs.push({ speaker, text, choiceList });
+            Vue.nextTick(() => {
+              this.$refs.scrollp.scrollTop = this.$refs.scrollp.scrollHeight;
+            });
           }
         }
       });
