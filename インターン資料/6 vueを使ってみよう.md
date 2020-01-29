@@ -67,7 +67,7 @@
               <p>{{ log.text }}</p>
               <hr />
             </div>
-            <div v-if="log.speaker=='Chat bot'">
+            <div v-if="log.speaker==getBotName">
               <img src="img/route66.png" /> <b class="log">{{ log.speaker }}</b>
               <p>{{ log.text }}</p>
               <div class="choiceBox">
@@ -92,8 +92,14 @@
     <!-- ここから-->
     <script>
       // 10 さあ画面を動かしてみよう
+      const botName = "Chat bot";
       let app = new Vue({
         el: "#app",
+        computed: {
+          getBotName: function(){
+            return botName;
+          }
+        },
         data: {
           submitPushed: false,
           logs: [

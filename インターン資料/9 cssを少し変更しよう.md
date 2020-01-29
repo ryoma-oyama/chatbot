@@ -58,7 +58,6 @@
       }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div id="app">
@@ -71,7 +70,7 @@
               <p>{{ log.text }}</p>
               <hr />
             </div>
-            <div v-if="log.speaker=='Chat bot'">
+            <div v-if="log.speaker==getBotName">
               <img src="img/route66.png" /> <b class="log">{{ log.speaker }}</b>
               <p>{{ log.text }}</p>
               <div class="choiceBox">
@@ -94,6 +93,7 @@
       </footer>
     </div>
     <script>
+      const botName = "Chat bot";
       const startChatBot = "startChatBot";
       const choiceA = "A";
       const choiceB = "B";
@@ -103,11 +103,16 @@
       const choiceF = "F";
       let app = new Vue({
         el: "#app",
+        computed: {
+          getBotName: function(){
+            return botName;
+          }
+        },
         data: {
           submitPushed: false,
           logs: [
             {
-                speaker: "Chat bot",
+                speaker: botName,
                 text: "好きな文言を入れてね",
                 choiceList: []
             }
@@ -147,7 +152,7 @@
                 text = "finish";
                 break;
             }
-            this.pushLogs("Chat bot", text, choiceList);
+            this.pushLogs(botName, text, choiceList);
           },
           getChoiceObject: function(t) {
             return {
