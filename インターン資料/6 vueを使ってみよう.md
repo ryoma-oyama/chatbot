@@ -104,7 +104,7 @@
           submitPushed: false,
           logs: [
             {
-                speaker: "Chat bot",
+                speaker: botName,
                 text: "好きな文言を入れてね",
                 choiceList: []
             }
